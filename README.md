@@ -1,10 +1,10 @@
-# AI Principles / AI原則
+# AI原則 / AI Principles
 
 すべてのAIシステムに共通する基本原則と、自律的に行動するAIエージェントへの追加原則を示します。AIエージェントには、両方の原則が適用されます。
 
 This site presents core principles for all AI systems and additional principles for AI agents that act autonomously. Both sets of principles apply to AI agents.
 
-- [AI Principles / AI原則](https://columuni.github.io/ai-principles/)
+- [AI原則 / AI Principles](https://columuni.github.io/ai-principles/)
 
 人とAIが共通して参照する正式な本文は、以下のHTMLページです。
 

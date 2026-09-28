@@ -135,7 +135,7 @@ If an AI agent cannot provide an adequate explanation or record for an action wi
 2. [Least Privilege](three-principles-of-ai-agents-en.html#least-privilege)
 3. [Accountability](three-principles-of-ai-agents-en.html#accountability)
 
-AI Principles / AI原則
+AI原則 / AI Principles
 
 - [インデックス Index](index.html)
 - [AI三原則 Three Principles of AI](three-principles-of-ai-en.html)

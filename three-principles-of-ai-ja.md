@@ -104,7 +104,7 @@ AIシステムは、人間の判断や能力を不必要に代替するのでは
 2. [透明性](three-principles-of-ai-ja.html#transparency)
 3. [有益性](three-principles-of-ai-ja.html#beneficence)
 
-AI Principles / AI原則
+AI原則 / AI Principles
 
 - [インデックス Index](index.html)
 - [AI三原則 Three Principles of AI](three-principles-of-ai-ja.html)

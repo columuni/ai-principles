@@ -104,7 +104,7 @@ An AI system must seek to augment human judgment and capability rather than repl
 2. [Transparency](three-principles-of-ai-en.html#transparency)
 3. [Beneficence](three-principles-of-ai-en.html#beneficence)
 
-AI Principles / AI原則
+AI原則 / AI Principles
 
 - [インデックス Index](index.html)
 - [AI三原則 Three Principles of AI](three-principles-of-ai-en.html)

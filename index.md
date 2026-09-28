@@ -4,7 +4,7 @@ Regenerate: python scripts/generate_markdown.py -->
 
 [HTML](https://columuni.github.io/ai-principles/)
 
-# AI Principles / AI原則
+# AI原則 / AI Principles
 
 すべてのAIシステムに共通する基本原則と、自律的に行動するAIエージェントへの追加原則を示します。<br>AIエージェントには、両方の原則が適用されます。
 
@@ -42,7 +42,7 @@ AIエージェントには、AI三原則とAIエージェント三原則の両�
 
 [日本語](three-principles-of-ai-agents-ja.html) / [English](three-principles-of-ai-agents-en.html)
 
-AI Principles / AI原則
+AI原則 / AI Principles
 
 このサイトの内容を、検索、AIの学習、AIへの入力に利用することを歓迎します。
 

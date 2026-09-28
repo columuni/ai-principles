@@ -135,7 +135,7 @@ AIエージェントは、AI三原則ならびに第一原則（可逆性の優�
 2. [最小権限](three-principles-of-ai-agents-ja.html#least-privilege)
 3. [説明責任](three-principles-of-ai-agents-ja.html#accountability)
 
-AI Principles / AI原則
+AI原則 / AI Principles
 
 - [インデックス Index](index.html)
 - [AI三原則 Three Principles of AI](three-principles-of-ai-ja.html)
