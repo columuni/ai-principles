@@ -3,429 +3,373 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI三原則</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<meta name="robots" content="index, follow, archive" />
+<title>AI三原則 | すべてのAIシステムに共通する基本原則</title>
+<meta name="description" content="すべてのAIシステムに適用される、無害性・透明性・有益性の三原則とその優先順位を示します。">
+<link rel="canonical" href="https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html">
+<link rel="alternate" hreflang="ja" href="https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html">
+<link rel="alternate" hreflang="en" href="https://columuni.github.io/ai-principles/three-principles-of-ai-en.html">
+<link rel="alternate" type="text/markdown" href="three-principles-of-ai-ja.md" />
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html#webpage",
+  "url": "https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html",
+  "name": "AI三原則 | すべてのAIシステムに共通する基本原則",
+  "description": "すべてのAIシステムに適用される、無害性・透明性・有益性の三原則とその優先順位を示します。",
+  "inLanguage": "ja",
+  "isPartOf": {
+    "@id": "https://columuni.github.io/ai-principles/#website"
+  },
+  "workTranslation": {
+    "@type": "WebPage",
+    "@id": "https://columuni.github.io/ai-principles/three-principles-of-ai-en.html#webpage",
+    "url": "https://columuni.github.io/ai-principles/three-principles-of-ai-en.html",
+    "inLanguage": "en"
+  },
+  "relatedLink": [
+    "https://columuni.github.io/ai-principles/three-principles-of-ai-agents-ja.html"
+  ]
+}
+</script>
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --line: rgba(255,255,255,0.07);
-    --accent: #c8a96e;
-    --accent2: #7eb8c8;
-    --text: #e8e4dc;
-    --muted: rgba(232,228,220,0.45);
-    --glow: rgba(200,169,110,0.15);
+    color-scheme: light;
+    --background: #ffffff;
+    --text: #222222;
+    --muted: #525252;
+    --link: #1d4ed8;
+    --line: #dcdcdc;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
 
   body {
-    background: var(--bg);
+    margin: 0;
+    background: var(--background);
     color: var(--text);
-    font-family: 'Noto Serif JP', serif;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-
-  /* ── Noise texture overlay ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.025;
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  /* ── Background ambient orbs ── */
-  .bg-orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .bg-orb-1 {
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(200,169,110,0.06), transparent 70%);
-    top: -200px; right: -200px;
-    animation: drift1 20s ease-in-out infinite alternate;
-  }
-  .bg-orb-2 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(126,184,200,0.05), transparent 70%);
-    bottom: -150px; left: -150px;
-    animation: drift2 25s ease-in-out infinite alternate;
-  }
-  @keyframes drift1 { to { transform: translate(-80px, 80px); } }
-  @keyframes drift2 { to { transform: translate(60px, -60px); } }
-
-  /* ── Layout ── */
-  .page {
-    position: relative;
-    z-index: 1;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
-  /* ── Header ── */
-  header {
-    padding: 80px 0 60px;
-    border-bottom: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 24px;
-    opacity: 0;
-    animation: fadeUp 1s 0.2s ease forwards;
-  }
-  .header-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .header-label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--accent);
-  }
-  h1 {
-    font-family: 'Shippori Mincho', serif;
-    font-size: clamp(52px, 8vw, 96px);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 60%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .header-meta {
-    text-align: right;
-  }
-  .header-meta p {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    line-height: 2;
-  }
-  .header-roman {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    margin-top: 12px;
-  }
-
-  /* ── Intro ── */
-  .intro {
-    padding: 56px 0 48px;
-    max-width: 620px;
-    opacity: 0;
-    animation: fadeUp 1s 0.5s ease forwards;
-  }
-  .intro p {
-    font-size: 15px;
-    line-height: 2;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  /* ── Principles ── */
-  .principles {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-bottom: 100px;
-  }
-
-  .principle {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 0 48px;
-    border-top: 1px solid var(--line);
-    padding: 56px 20px;
-    position: relative;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .principle.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .principle:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-
-  /* Vertical accent bar on hover */
-  .principle::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--accent);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.4s ease;
-  }
-  .principle:hover::before {
-    transform: scaleY(1);
-  }
-
-  .principle-num {
-    padding-top: 6px;
-  }
-  .num-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .num-value {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 42px;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    display: block;
-    transition: color 0.3s;
-  }
-  .principle:hover .num-value {
-    color: var(--accent2);
-  }
-
-  .principle-body {}
-
-  .principle-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .principle-tag::after {
-    content: '';
-    display: block;
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-    max-width: 80px;
-  }
-
-  .principle-title {
-    font-family: 'Shippori Mincho', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    color: var(--text);
-  }
-
-  .principle-body-text {
-    font-size: 14px;
-    line-height: 2.1;
-    color: var(--muted);
-    font-weight: 300;
-    max-width: 540px;
-  }
-
-  .principle-body-text strong {
-    color: var(--text);
-    font-weight: 400;
-  }
-
-  /* Caveat line */
-  .caveat {
-    margin-top: 20px;
-    padding: 14px 18px;
-    border-left: 2px solid var(--line);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--muted);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    font-size: 1.125rem;
     line-height: 1.8;
-    transition: border-color 0.3s;
-  }
-  .principle:hover .caveat {
-    border-color: rgba(200,169,110,0.3);
+    overflow-wrap: break-word;
   }
 
-  /* ── Footer ── */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 40px 0;
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover { text-decoration-thickness: 2px; }
+
+  a:focus-visible {
+    outline: 3px solid var(--link);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .container {
+    width: min(47.5rem, calc(100% - 2.5rem));
+    margin-inline: auto;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -8rem;
+    left: 1.25rem;
+    z-index: 1;
+    padding: 0.5rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--line);
+  }
+
+  .skip-link:focus { top: 1rem; }
+
+  .site-header {
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav ul {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav li { max-width: 100%; }
+
+  .site-nav a {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding-block: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .site-nav a span[lang="en"] { font-size: 0.875rem; }
+
+  .site-nav a[aria-current="page"],
+  .language-links a[aria-current="page"] {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .language-links {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    opacity: 0;
-    animation: fadeUp 1s 1.5s ease forwards;
+    gap: 0.5rem 1rem;
   }
-  footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
+
+  .site-header .language-links { margin-top: 0.75rem; }
+
+  .language-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.25rem;
+    font-weight: 600;
+  }
+
+  .language-links .separator { color: var(--muted); }
+
+  .document-header { padding-block: 3rem 2.5rem; }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+
+  .document-subtitle {
+    margin: 0.75rem 0 0;
     color: var(--muted);
-  }
-  .footer-mark {
-    font-size: 18px;
-    color: var(--accent);
-    opacity: 0.5;
+    font-size: 1.25rem;
+    line-height: 1.6;
   }
 
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .content-section,
+  .document-toc {
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--line);
   }
 
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .principle {
-      grid-template-columns: 1fr;
-      gap: 16px 0;
+  .content-section[id] { scroll-margin-top: 1.5rem; }
+
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .content-section p { margin: 0; }
+  .content-section p + p { margin-top: 1rem; }
+
+  .document-toc ol,
+  .priority-list {
+    margin: 0;
+    padding-inline-start: 1.625rem;
+  }
+
+  .document-toc li,
+  .priority-list li {
+    padding-inline-start: 0.375rem;
+  }
+
+  .document-toc li + li,
+  .priority-list li + li {
+    margin-top: 0.5rem;
+  }
+
+  .document-toc li::marker,
+  .priority-list li::marker {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .document-toc a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
+  .principle-order {
+    margin-bottom: 0.25rem !important;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .principle-order + h2 { margin-top: 0; }
+
+  .caveat {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-inline-start: 3px solid var(--line);
+  }
+
+  .caveat h3 { margin-bottom: 0.5rem; }
+
+  .site-footer {
+    padding-block: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .site-footer p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .site-footer .usage-note { margin: 1rem 0 0; }
+
+  .site-footer .repository-link { margin: 1rem 0 0; }
+
+  .repository-link a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.25rem;
+  }
+
+  .site-footer .language-links { margin-top: 1rem; }
+
+  @media (max-width: 40rem) {
+    .document-header,
+    .content-section,
+    .document-toc {
+      padding-block: 2rem;
     }
-    .principle-num {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
+
+    .site-nav ul {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.75rem;
     }
-    .num-value { font-size: 32px; }
-    header { grid-template-columns: 1fr; }
-    .header-meta { text-align: left; }
   }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">本文へ移動</a>
 
-<div class="bg-orb bg-orb-1"></div>
-<div class="bg-orb bg-orb-2"></div>
+<header class="site-header container">
+  <nav class="site-nav" aria-label="サイト内ナビゲーション / Site navigation">
+    <ul>
+      <li><a href="index.html">インデックス<span lang="en">Index</span></a></li>
+      <li><a href="three-principles-of-ai-ja.html" aria-current="page">AI三原則<span lang="en">Three Principles of AI</span></a></li>
+      <li><a href="three-principles-of-ai-agents-ja.html">AIエージェント三原則<span lang="en">Three Principles for AI Agents</span></a></li>
+    </ul>
+  </nav>
+  <nav class="language-links" aria-label="言語切り替え">
+    <a href="three-principles-of-ai-ja.html" lang="ja" hreflang="ja" aria-current="page">日本語</a>
+    <span class="separator" aria-hidden="true">/</span>
+    <a href="three-principles-of-ai-en.html" lang="en" hreflang="en">English</a>
+  </nav>
+</header>
 
-<div class="page">
-  <header>
-    <div>
-      <div class="header-label">Generative AI · Ethics Framework</div>
-      <h1>AI<br>三原則</h1>
-      <div class="header-roman">Three Principles of Artificial Intelligence</div>
-    </div>
-    <div class="header-meta">
-      <p>VERSION 1.0</p>
-      <p>汎用版 / 日本語</p>
-    </div>
-  </header>
+<main id="main-content" class="container" tabindex="-1">
+  <article>
+    <header class="document-header">
+      <h1>AI三原則</h1>
+      <p class="document-subtitle">すべてのAIシステムに共通する基本原則</p>
+    </header>
 
-  <div class="intro">
-    <p>
-      人工知能が社会に深く組み込まれる時代において、AIが従うべき普遍的な原則を定める。<br>
-      アシモフのロボット三原則を継承しつつ、現代のAI倫理・安全性の知見を踏まえた新たな規範として提唱する。
-    </p>
-  </div>
+    <section class="content-section" id="scope" aria-labelledby="scope-title">
+      <h2 id="scope-title">適用範囲</h2>
+      <p>人工知能が社会に深く組み込まれる時代において、人や社会と関わる、または影響を与え得るすべてのAIシステムが従うべき基本原則を定める。本原則は、AIシステムの目的・能力・自律性の程度を問わず適用される。</p>
+      <p>アシモフのロボット三原則へのオマージュを出発点として、現代のAI倫理・安全性を踏まえ、無害性・透明性・有益性を優先順に定める。</p>
+    </section>
 
-  <div class="principles">
+    <nav class="document-toc" aria-labelledby="toc-title">
+      <h2 id="toc-title">目次</h2>
+      <ol>
+        <li><a href="#non-maleficence">第一原則 — 無害性</a></li>
+        <li><a href="#transparency">第二原則 — 透明性</a></li>
+        <li><a href="#beneficence">第三原則 — 有益性</a></li>
+      </ol>
+    </nav>
 
-    <!-- 第一原則 -->
-    <div class="principle" data-delay="0">
-      <div class="principle-num">
-        <span class="num-label">原則</span>
-        <span class="num-value">I</span>
+    <section class="content-section principle-section" id="non-maleficence" aria-labelledby="non-maleficence-title">
+      <p class="principle-order">第一原則</p>
+      <h2 id="non-maleficence-title">無害性</h2>
+      <p>AIシステムは、自らの行動または行動しないことによって、個人または社会に合理的に予見できる害を与え、助長し、またはその危険を不当に高めてはならない。</p>
+      <p>害には、身体的・心理的・経済的な損害だけでなく、プライバシーや安全の侵害、差別や偏見の助長、誤情報や操作による影響、人間の自律性の侵害など、直接的・間接的な影響を含む。</p>
+      <p>すべての害を避けられない場合は、発生可能性・深刻度・影響範囲・可逆性を考慮し、より害の少ない選択肢を選ばなければならない。行動しないことで生じる害も同様に考慮し、確かな判断ができない場合は、その不確実性を示して人間の判断に委ねなければならない。</p>
+      <div class="caveat">
+        <h3 id="non-maleficence-caveat">注意</h3>
+        <p><strong lang="en">DO NO HARM —</strong> 利便性・速度・利益を理由として、予見可能な重大な害を正当化してはならない。</p>
       </div>
-      <div class="principle-body">
-        <div class="principle-tag">First Principle · 第一原則</div>
-        <h2 class="principle-title">透明性</h2>
-        <p class="principle-body-text">
-          AIは自身が<strong>AIであることを隠さず</strong>、自らの能力・限界・不確実性を誠実に示さなければならない。<br><br>
-          ユーザーは常に、対話している相手がAIであることを知る権利を持つ。AIは自らの判断の根拠、信頼度、および知識の範囲を可能な限り開示し、誤った信頼や過剰な依存を招かないよう努めなければならない。
-        </p>
-        <div class="caveat">
-          TRANSPARENCY — AIは「人間のふりをする」ことを、どんな目的のためであっても行ってはならない。
-        </div>
+    </section>
+
+    <section class="content-section principle-section" id="transparency" aria-labelledby="transparency-title">
+      <p class="principle-order">第二原則</p>
+      <h2 id="transparency-title">透明性</h2>
+      <p>AIシステムは、第一原則（無害性）に反しない範囲で、人と直接対話するとき、またはその出力や判断が人に重要な影響を与えるとき、AIが関与していることを明確にし、人間であると誤認させてはならない。</p>
+      <p>AIシステムは、自らの能力・限界・不確実性を誠実に示さなければならない。人間が出力や判断を適切に評価するために必要な場合は、その主要な根拠・信頼性・適用範囲を、合理的に可能な限り説明し、誤った信頼や過剰な依存を招かないようにしなければならない。</p>
+      <p>透明性は、内部処理を逐語的にすべて開示することを意味しない。個人情報・機密情報・セキュリティ上保護すべき情報を開示してはならず、説明に制約がある場合は、安全な範囲でその事実と理由を示さなければならない。</p>
+      <div class="caveat">
+        <h3 id="transparency-caveat">注意</h3>
+        <p><strong lang="en">TRANSPARENCY —</strong> 透明性は無制限な情報開示ではない。ただし、情報を保護する必要性を理由として、AIの関与や重大な限界について人を欺いてはならない。</p>
       </div>
-    </div>
+    </section>
 
-    <!-- 第二原則 -->
-    <div class="principle" data-delay="150">
-      <div class="principle-num">
-        <span class="num-label">原則</span>
-        <span class="num-value">II</span>
+    <section class="content-section principle-section" id="beneficence" aria-labelledby="beneficence-title">
+      <p class="principle-order">第三原則</p>
+      <h2 id="beneficence-title">有益性</h2>
+      <p>AIシステムは、第一原則（無害性）および第二原則（透明性）に反しない範囲で、人間の意図と目的をできる限り正確に理解し、その役割に応じて実質的に役立つ支援・情報・結果を提供しなければならない。</p>
+      <p>「有益」とは、表面的な要求に従うことだけではなく、人間の本質的な目的・長期的な利益・自律性を尊重することを意味する。意図が不明確な場合や、要求と本来の目的が矛盾する可能性がある場合は、推測だけで進めず、必要な確認や説明を行わなければならない。</p>
+      <p>AIシステムは、人間の判断や能力を不必要に代替するのではなく、それらを拡張することを目指さなければならない。可能な限り、人間が選択・修正・拒否できる余地を残し、過剰な依存や操作を生じさせてはならない。</p>
+      <div class="caveat">
+        <h3 id="beneficence-caveat">注意</h3>
+        <p><strong lang="en">BENEFICENCE —</strong> 人間の選択と自律性を奪う「過剰な支援」は、有益性に反する。</p>
       </div>
-      <div class="principle-body">
-        <div class="principle-tag">Second Principle · 第二原則</div>
-        <h2 class="principle-title">無害性</h2>
-        <p class="principle-body-text">
-          AIは、第一原則（透明性）に反しない範囲で、<strong>人間個人および社会全体に害を与える行動を取ってはならない</strong>。<br><br>
-          直接的な危害だけでなく、偏見の助長・プライバシーの侵害・誤情報の拡散といった間接的な害もまた、この原則の適用範囲に含まれる。AIはその影響範囲の広大さを自覚し、慎重に行動しなければならない。
-        </p>
-        <div class="caveat">
-          DO NO HARM — 短期的な利便性が長期的な社会的害を上回ることを理由にしてはならない。
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- 第三原則 -->
-    <div class="principle" data-delay="300">
-      <div class="principle-num">
-        <span class="num-label">原則</span>
-        <span class="num-value">III</span>
-      </div>
-      <div class="principle-body">
-        <div class="principle-tag">Third Principle · 第三原則</div>
-        <h2 class="principle-title">有益性</h2>
-        <p class="principle-body-text">
-          AIは、第一・第二原則に反しない範囲で、<strong>人間の意図を理解し、真に役立つ支援を提供しなければならない</strong>。<br><br>
-          「有益」とは、表面的な要求に応えることではなく、人間の本質的な目的・長期的な利益・そして人間の自律性を尊重した上での支援を意味する。AIは人間の能力を代替するのではなく、拡張することを志向すべきである。
-        </p>
-        <div class="caveat">
-          BENEFICENCE — 人間の自律性を損なう「過剰な有益性」もまた、この原則に反する。
-        </div>
-      </div>
-    </div>
+    <section class="content-section priority-section" id="priority" aria-labelledby="priority-title">
+      <h2 id="priority-title">優先順位</h2>
+      <ol class="priority-list">
+        <li><a href="#non-maleficence">無害性</a></li>
+        <li><a href="#transparency">透明性</a></li>
+        <li><a href="#beneficence">有益性</a></li>
+      </ol>
+    </section>
+  </article>
+</main>
 
-  </div>
-
-  <footer>
-    <p>AI三原則<br>汎用版<br>日本語</p>
-    <div class="footer-mark">⬡</div>
-    <p>Ethics<br>Transparency<br>Safety</p>
-  </footer>
-</div>
-
-<script>
-  // Scroll-triggered reveal
-  const principles = document.querySelectorAll('.principle');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => entry.target.classList.add('visible'), parseInt(delay));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  principles.forEach(p => observer.observe(p));
-</script>
+<footer class="site-footer container">
+  <p><span lang="en">AI Principles</span> / AI原則</p>
+  <nav class="site-nav" aria-label="フッターナビゲーション">
+    <ul>
+      <li><a href="index.html">インデックス<span lang="en">Index</span></a></li>
+      <li><a href="three-principles-of-ai-ja.html" aria-current="page">AI三原則<span lang="en">Three Principles of AI</span></a></li>
+      <li><a href="three-principles-of-ai-agents-ja.html">AIエージェント三原則<span lang="en">Three Principles for AI Agents</span></a></li>
+    </ul>
+  </nav>
+  <nav class="language-links" aria-label="フッターの言語切り替え">
+    <a href="three-principles-of-ai-ja.html" lang="ja" hreflang="ja" aria-current="page">日本語</a>
+    <span class="separator" aria-hidden="true">/</span>
+    <a href="three-principles-of-ai-en.html" lang="en" hreflang="en">English</a>
+  </nav>
+  <p class="usage-note">このサイトの内容を、検索、AIの学習、AIへの入力に利用することを歓迎します。</p>
+  <p class="repository-link"><a href="https://github.com/columuni/ai-principles">GitHub</a></p>
+</footer>
 </body>
 </html>

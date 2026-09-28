@@ -3,455 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI原則インデックス - AI Principles Index</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600;700&family=Noto+Serif+JP:wght@300;400&family=Space+Mono:wght@400;700&family=Unbounded:wght@700;900&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<meta name="robots" content="index, follow, archive" />
+<title>AI Principles / AI原則</title>
+<meta name="description" content="すべてのAIシステムに共通するAI三原則と、自律的に行動するAIエージェントへの追加原則。日本語・英語で読むことができます。">
+<link rel="canonical" href="https://columuni.github.io/ai-principles/">
+<link rel="alternate" type="text/markdown" href="index.md" />
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://columuni.github.io/ai-principles/#website",
+      "url": "https://columuni.github.io/ai-principles/",
+      "name": "AI Principles / AI原則",
+      "inLanguage": [
+        "ja",
+        "en"
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://columuni.github.io/ai-principles/#webpage",
+      "url": "https://columuni.github.io/ai-principles/",
+      "name": "AI Principles / AI原則",
+      "description": "すべてのAIシステムに共通するAI三原則と、自律的に行動するAIエージェントへの追加原則。日本語・英語で読むことができます。",
+      "inLanguage": [
+        "ja",
+        "en"
+      ],
+      "isPartOf": {
+        "@id": "https://columuni.github.io/ai-principles/#website"
+      },
+      "relatedLink": [
+        "https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html",
+        "https://columuni.github.io/ai-principles/three-principles-of-ai-en.html",
+        "https://columuni.github.io/ai-principles/three-principles-of-ai-agents-ja.html",
+        "https://columuni.github.io/ai-principles/three-principles-of-ai-agents-en.html"
+      ]
+    }
+  ]
+}
+</script>
 <style>
   :root {
-    --bg: #0c0c12;
-    --line: rgba(255,255,255,0.07);
-    --gold: #c8a96e;
-    --teal: #7eb8c8;
-    --red: #c0392b;
-    --parchment: #f0ede8;
-    --text: #e8e4dc;
-    --muted: rgba(232,228,220,0.4);
-    --mono: 'Space Mono', monospace;
+    color-scheme: light;
+    --background: #ffffff;
+    --text: #222222;
+    --muted: #525252;
+    --link: #1d4ed8;
+    --line: #dcdcdc;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
 
   body {
-    background: var(--bg);
+    margin: 0;
+    background: var(--background);
     color: var(--text);
-    font-family: 'DM Mono', monospace;
-    min-height: 100vh;
-    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    overflow-wrap: break-word;
   }
 
-  /* noise */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.022; pointer-events: none; z-index: 0;
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
   }
 
-  /* ambient orbs */
-  .orb {
-    position: fixed; border-radius: 50%;
-    filter: blur(140px); pointer-events: none; z-index: 0;
-  }
-  .orb-1 {
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(200,169,110,0.07), transparent 70%);
-    top: -250px; right: -250px;
-    animation: drift1 22s ease-in-out infinite alternate;
-  }
-  .orb-2 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(192,57,43,0.05), transparent 70%);
-    bottom: -150px; left: -150px;
-    animation: drift2 28s ease-in-out infinite alternate;
-  }
-  .orb-3 {
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(126,184,200,0.04), transparent 70%);
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-    animation: drift3 18s ease-in-out infinite alternate;
-  }
-  @keyframes drift1 { to { transform: translate(-60px, 60px); } }
-  @keyframes drift2 { to { transform: translate(50px, -50px); } }
-  @keyframes drift3 { to { transform: translate(-50%,-50%) scale(1.15); } }
+  a:hover { text-decoration-thickness: 2px; }
 
-  /* ── page ── */
-  .page {
-    position: relative; z-index: 1;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 36px;
+  a:focus-visible {
+    outline: 3px solid var(--link);
+    outline-offset: 4px;
+    border-radius: 2px;
   }
 
-  /* ── header ── */
-  header {
-    padding: 80px 0 64px;
-    border-bottom: 1px solid var(--line);
-    opacity: 0;
-    animation: fadeUp 0.9s 0.1s ease forwards;
+  .container {
+    width: min(47.5rem, calc(100% - 2.5rem));
+    margin-inline: auto;
   }
-  .header-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    color: var(--gold);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
+
+  .page-intro { padding-block: 3rem 2.5rem; }
+
+  h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
   }
-  .header-eyebrow::before {
-    content: '';
+
+  .title-ja {
+    display: inline-block;
+    margin-inline-start: 0.3em;
+    font-size: 0.65em;
+    font-weight: 500;
+    letter-spacing: normal;
+  }
+
+  .page-intro p { margin: 0; }
+  .page-intro p + p { margin-top: 1rem; }
+  .translation { color: var(--muted); }
+
+  .principles-section {
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  h2 span[lang="en"] {
     display: block;
-    width: 28px; height: 1px;
-    background: var(--gold);
+    margin-top: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
-  .header-titles {
+
+  .subtitle { margin: 1rem 0 0; }
+  .subtitle span { display: block; }
+
+  .principles-list {
+    margin-block: 1.5rem;
+    padding-inline-start: 1.625rem;
+  }
+
+  .principles-list li {
+    margin-block: 0.375rem;
+    padding-inline-start: 0.375rem;
+  }
+
+  .principles-list li::marker {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .scope-note { margin: 1.5rem 0; }
+  .scope-note span[lang="en"] {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .language-links {
     display: flex;
-    align-items: baseline;
-    gap: 24px;
     flex-wrap: wrap;
-  }
-  .title-jp {
-    font-family: 'Noto Serif JP', serif;
-    font-size: clamp(36px, 6vw, 72px);
-    font-weight: 400;
-    line-height: 1;
-    background: linear-gradient(120deg, var(--text) 0%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .title-divider {
-    width: 1px; height: 48px;
-    background: var(--line);
-    flex-shrink: 0;
-    align-self: center;
-  }
-  .title-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(20px, 3vw, 36px);
-    font-weight: 300;
-    color: var(--muted);
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-  }
-  .header-desc {
-    margin-top: 24px;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    line-height: 2;
-    max-width: 560px;
-  }
-
-  /* ── grid ── */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    margin: 56px 0;
-    border: 1px solid var(--line);
-  }
-
-  /* ── card ── */
-  .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 48px 40px 40px;
-    text-decoration: none;
-    overflow: hidden;
-    transition: background 0.35s ease;
-    cursor: pointer;
-  }
-
-  /* dark cards (universal) */
-  .card.dark {
-    background: #0e0e16;
-    color: var(--text);
-  }
-  .card.dark:hover { background: #13131e; }
-
-  /* light cards (agent) */
-  .card.light {
-    background: #f0ede8;
-    color: #1a1814;
-  }
-  .card.light:hover { background: #e8e4dc; }
-
-  /* hover reveal bar */
-  .card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.4s ease;
-  }
-  .card.dark::before  { background: var(--gold); }
-  .card.light::before { background: var(--red); }
-  .card:hover::before { transform: scaleY(1); }
-
-  /* series badge */
-  .card-series {
-    font-size: 9px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem 1rem;
   }
-  .card.dark  .card-series { color: var(--gold); }
-  .card.light .card-series { color: var(--red); }
-  .card-series::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    max-width: 40px;
-  }
-  .card.dark  .card-series::after { background: var(--line); }
-  .card.light .card-series::after { background: rgba(26,24,20,0.12); }
 
-  /* card number */
-  .card-num {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 64px;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 16px;
-    transition: color 0.3s;
-  }
-  .card.dark  .card-num { color: rgba(255,255,255,0.05); }
-  .card.light .card-num { color: rgba(26,24,20,0.06); }
-  .card:hover .card-num { color: rgba(255,255,255,0.09); }
-  .card.light:hover .card-num { color: rgba(26,24,20,0.1); }
-
-  /* card title */
-  .card-title-jp {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 4px;
-  }
-  .card.dark  .card-title-jp { color: var(--text); }
-  .card.light .card-title-jp { color: #1a1814; }
-
-  .card-title-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    margin-bottom: 24px;
-  }
-  .card.dark  .card-title-en { color: var(--muted); }
-  .card.light .card-title-en { color: rgba(26,24,20,0.4); }
-
-  /* lang tag */
-  .card-lang {
+  .language-links a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    padding: 6px 12px;
-    border: 1px solid;
-    margin-bottom: 28px;
-    width: fit-content;
+    min-height: 2.75rem;
+    padding: 0.25rem;
+    font-weight: 600;
   }
-  .card.dark  .card-lang { border-color: var(--line); color: var(--muted); }
-  .card.light .card-lang { border-color: rgba(26,24,20,0.15); color: rgba(26,24,20,0.45); }
-  .lang-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-  }
-  .card.dark  .lang-dot { background: var(--gold); }
-  .card.light .lang-dot { background: var(--red); }
 
-  /* description */
-  .card-desc {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    line-height: 2;
-    flex: 1;
-  }
-  .card.dark  .card-desc { color: var(--muted); }
-  .card.light .card-desc { color: rgba(26,24,20,0.45); }
+  .language-links .separator { color: var(--muted); }
 
-  /* arrow cta */
-  .card-cta {
-    margin-top: 32px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: gap 0.3s ease;
-  }
-  .card:hover .card-cta { gap: 16px; }
-  .card.dark  .card-cta { color: var(--gold); }
-  .card.light .card-cta { color: var(--red); }
-  .cta-arrow { font-size: 16px; }
-
-  /* ── footer ── */
-  footer {
+  .site-footer {
+    padding-block: 2rem;
     border-top: 1px solid var(--line);
-    padding: 36px 0 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    opacity: 0;
-    animation: fadeUp 0.9s 1.2s ease forwards;
   }
-  footer p {
-    font-size: 9px;
-    letter-spacing: 0.18em;
+
+  .site-footer p {
+    margin: 0;
     color: var(--muted);
-  }
-  .footer-mark {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    color: var(--gold);
-    opacity: 0.4;
+    font-size: 1rem;
   }
 
-  /* ── animations ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .card {
-    opacity: 0;
-    animation: fadeUp 0.7s ease forwards;
-  }
-  .card:nth-child(1) { animation-delay: 0.35s; }
-  .card:nth-child(2) { animation-delay: 0.45s; }
-  .card:nth-child(3) { animation-delay: 0.55s; }
-  .card:nth-child(4) { animation-delay: 0.65s; }
+  .site-footer .usage-note { margin: 1rem 0 0; }
 
-  /* ── responsive ── */
-  @media (max-width: 640px) {
-    .grid { grid-template-columns: 1fr; }
-    .title-divider { display: none; }
-    .card { padding: 36px 28px 32px; }
-    .card-num { font-size: 48px; }
+  .site-footer .repository-link { margin: 1rem 0 0; }
+
+  .repository-link a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.25rem;
+  }
+
+  @media (max-width: 40rem) {
+    .page-intro { padding-block: 2rem; }
+    .principles-section { padding-block: 2rem; }
   }
 </style>
 </head>
 <body>
+<header class="page-intro container">
+  <h1><span lang="en">AI Principles</span><span class="title-ja"> / AI原則</span></h1>
+  <p>すべてのAIシステムに共通する基本原則と、自律的に行動するAIエージェントへの追加原則を示します。<br>AIエージェントには、両方の原則が適用されます。</p>
+  <p class="translation" lang="en">This site presents core principles for all AI systems and additional principles for AI agents that act autonomously. Both sets of principles apply to AI agents.</p>
+</header>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-
-<div class="page">
-
-  <header>
-    <div class="header-eyebrow">Ethics Framework · Document Index</div>
-    <div class="header-titles">
-      <div class="title-jp">AI原則インデックス</div>
-      <div class="title-divider"></div>
-      <div class="title-en">AI Principles Index</div>
-    </div>
-    <p class="header-desc">
-      人工知能が従うべき原則を定めた2つのフレームワーク。<br>
-      汎用版とエージェント版、各日英2言語、計4ドキュメント。<br>
-	  Two frameworks defining the principles<br>that artificial intelligence should follow.<br>
-	  General-purpose version and agent version,<br>each available in English and Japanese.<br>
-	  A total of four documents.
+<main id="main-content" class="container">
+  <section id="ai-principles" class="principles-section" aria-labelledby="ai-principles-title">
+    <h2 id="ai-principles-title">AI三原則<span lang="en">Three Principles of AI</span></h2>
+    <p class="subtitle">
+      <span>すべてのAIシステムに共通する基本原則</span>
+      <span class="translation" lang="en">Core Principles for All AI Systems</span>
     </p>
-  </header>
+    <ol class="principles-list">
+      <li>無害性 <span class="translation">/ <span lang="en">Non-Maleficence</span></span></li>
+      <li>透明性 <span class="translation">/ <span lang="en">Transparency</span></span></li>
+      <li>有益性 <span class="translation">/ <span lang="en">Beneficence</span></span></li>
+    </ol>
+    <nav class="language-links" aria-labelledby="ai-principles-title">
+      <a href="three-principles-of-ai-ja.html" lang="ja" hreflang="ja">日本語</a>
+      <span class="separator" aria-hidden="true">/</span>
+      <a href="three-principles-of-ai-en.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </section>
 
-  <div class="grid">
+  <section id="ai-agent-principles" class="principles-section" aria-labelledby="ai-agent-principles-title">
+    <h2 id="ai-agent-principles-title">AIエージェント三原則<span lang="en">Three Principles for AI Agents</span></h2>
+    <p class="subtitle">
+      <span>自律的に行動するAIシステムへの追加原則</span>
+      <span class="translation" lang="en">Additional Principles for AI Systems That Act Autonomously</span>
+    </p>
+    <ol class="principles-list">
+      <li>可逆性の優先 <span class="translation">/ <span lang="en">Reversibility First</span></span></li>
+      <li>最小権限 <span class="translation">/ <span lang="en">Least Privilege</span></span></li>
+      <li>説明責任 <span class="translation">/ <span lang="en">Accountability</span></span></li>
+    </ol>
+    <p class="scope-note">
+      AIエージェントには、AI三原則とAIエージェント三原則の両方が適用されます。
+      <span class="translation" lang="en">Both the Three Principles of AI and the Three Principles for AI Agents apply to AI agents.</span>
+    </p>
+    <nav class="language-links" aria-labelledby="ai-agent-principles-title">
+      <a href="three-principles-of-ai-agents-ja.html" lang="ja" hreflang="ja">日本語</a>
+      <span class="separator" aria-hidden="true">/</span>
+      <a href="three-principles-of-ai-agents-en.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </section>
+</main>
 
-    <!-- 1: 汎用版 JA -->
-    <a class="card dark" href="/ai-principles/three-principles-of-ai-ja.html">
-      <div class="card-series">汎用版</div>
-      <div class="card-num">01</div>
-      <div class="card-title-jp">AI三原則</div>
-      <div class="card-title-en">Three Principles of AI</div>
-      <div class="card-lang">
-        <span class="lang-dot"></span>
-        日本語 · Japanese
-      </div>
-      <p class="card-desc">
-        透明性 · 無害性 · 有益性<br>
-        汎用AIが従うべき3つの普遍的原則。<br>
-        アシモフのロボット三原則を現代に継承。
-      </p>
-      <div class="card-cta">
-        <span>Open</span>
-        <span class="cta-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 2: 汎用版 EN -->
-    <a class="card dark" href="/ai-principles/three-principles-of-ai-en.html">
-      <div class="card-series">Universal Edition</div>
-      <div class="card-num">02</div>
-      <div class="card-title-jp">Three Principles of AI</div>
-      <div class="card-title-en">Three Principles of Artificial Intelligence</div>
-      <div class="card-lang">
-        <span class="lang-dot"></span>
-        英語 · English
-      </div>
-      <p class="card-desc">
-        Transparency · Non-Maleficence · Beneficence<br>
-        Three universal principles governing general-purpose AI.<br>
-        A modern heir to Asimov's Three Laws of Robotics.
-      </p>
-      <div class="card-cta">
-        <span>Open</span>
-        <span class="cta-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 3: エージェント版 JA -->
-    <a class="card light" href="/ai-principles/three-principles-of-ai-agents-ja.html">
-      <div class="card-series">自律エージェント版</div>
-      <div class="card-num">03</div>
-      <div class="card-title-jp">AIエージェント三原則</div>
-      <div class="card-title-en">Three Principles of AI Agents</div>
-      <div class="card-lang">
-        <span class="lang-dot"></span>
-        日本語 · Japanese
-      </div>
-      <p class="card-desc">
-        可逆性の優先 · 最小権限 · 説明責任の維持<br>
-        自律的に計画・判断・実行するAIエージェント向け。<br>
-        汎用版より厳格な制約と明確な優先順位を規定。
-      </p>
-      <div class="card-cta">
-        <span>Open</span>
-        <span class="cta-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 4: エージェント版 EN -->
-    <a class="card light" href="/ai-principles/three-principles-of-ai-agents-en.html">
-      <div class="card-series">Autonomous Agent Edition</div>
-      <div class="card-num">04</div>
-      <div class="card-title-jp">Three Principles of AI Agents</div>
-      <div class="card-title-en">Three Principles of AI Agents</div>
-      <div class="card-lang">
-        <span class="lang-dot"></span>
-        英語 · English
-      </div>
-      <p class="card-desc">
-        Reversibility First · Least Privilege · Accountability<br>
-        For AI agents that plan, decide, and act autonomously.<br>
-        Stricter constraints with an explicit order of precedence.
-      </p>
-      <div class="card-cta">
-        <span>Open</span>
-        <span class="cta-arrow">→</span>
-      </div>
-    </a>
-
-  </div>
-
-  <footer>
-    <p>AI Principles Index<br>Ethics Framework</p>
-    <div class="footer-mark">⬡</div>
-    <p>4 Documents<br>2 Frameworks<br>2 Languages</p>
-  </footer>
-
-</div>
+<footer class="site-footer container">
+  <p><span lang="en">AI Principles</span> / AI原則</p>
+  <p class="usage-note">このサイトの内容を、検索、AIの学習、AIへの入力に利用することを歓迎します。</p>
+  <p class="usage-note" lang="en">We welcome the use of this site's content for search and AI training, and as input to AI systems.</p>
+  <p class="repository-link"><a href="https://github.com/columuni/ai-principles">GitHub</a></p>
+</footer>
 </body>
 </html>
