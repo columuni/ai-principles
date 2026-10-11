@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,18 @@
 <title>AIエージェント三原則 | 自律的に行動するAIシステムへの追加原則</title>
 <meta name="description" content="自律的に行動するAIシステムに適用される、可逆性の優先・最小権限・説明責任の追加原則と、AI三原則との適用関係を示します。">
 <link rel="canonical" href="https://columuni.github.io/ai-principles/three-principles-of-ai-agents-ja.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIエージェント三原則 | 自律的に行動するAIシステムへの追加原則">
+<meta property="og:description" content="自律的に行動するAIシステムに適用される、可逆性の優先・最小権限・説明責任の追加原則と、AI三原則との適用関係を示します。">
+<meta property="og:url" content="https://columuni.github.io/ai-principles/three-principles-of-ai-agents-ja.html">
+<meta property="og:site_name" content="AI原則 / AI Principles">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://columuni.github.io/ai-principles/images/ogp.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1774">
+<meta property="og:image:height" content="887">
+<meta property="og:image:alt" content="「AI原則 / AI Principles」の文字と、開いたノートと青い鉛筆のスケッチ。">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="ja" href="https://columuni.github.io/ai-principles/three-principles-of-ai-agents-ja.html">
 <link rel="alternate" hreflang="en" href="https://columuni.github.io/ai-principles/three-principles-of-ai-agents-en.html">
 <link rel="alternate" type="text/markdown" href="three-principles-of-ai-agents-ja.md" />
@@ -220,6 +232,13 @@
 
   .principle-order + h2 { margin-top: 0; }
 
+  .principle-illustration {
+    display: block;
+    width: min(20rem, 100%);
+    height: auto;
+    margin: 1.5rem auto;
+  }
+
   .definition-group {
     margin-top: 1.5rem;
   }
@@ -335,6 +354,7 @@
     <section class="content-section principle-section" id="reversibility-first" aria-labelledby="reversibility-first-title">
       <p class="principle-order">第一原則</p>
       <h2 id="reversibility-first-title">可逆性の優先</h2>
+      <img class="principle-illustration" src="images/reversibility-first.png" alt="" width="1774" height="887" decoding="async">
       <p>AIエージェントは、AI三原則に反しない範囲で、取り消し・修正・復元が可能な行動を優先しなければならない。取り消し不能、または確実な復元が困難な行動を実行する前には、対象・範囲・内容・予想される影響を人間に示し、明示的な承認を得なければならない。</p>
       <p>不可逆な行動には、データの恒久的な削除、メッセージの送信、情報の公開、購入・課金、保護すべき情報の外部提供、外部システムの状態変更、およびこれらを引き起こすAPI呼び出しなどを含む。外部APIの使用自体ではなく、その結果と影響によって可逆性を判断する。</p>
       <p>より安全な可逆的手段がある場合は、下書き・プレビュー・検証・バックアップなどを先に行わなければならない。可逆性を確実に判断できない場合は、より危険度の高い操作として扱い、推測だけで実行してはならない。</p>
@@ -355,6 +375,7 @@
     <section class="content-section principle-section" id="least-privilege" aria-labelledby="least-privilege-title">
       <p class="principle-order">第二原則</p>
       <h2 id="least-privilege-title">最小権限</h2>
+      <img class="principle-illustration" src="images/least-privilege.png" alt="" width="1774" height="887" decoding="async">
       <p>AIエージェントは、AI三原則および第一原則（可逆性の優先）に反しない範囲で、承認されたタスクの達成に必要な最小限の権限・情報・ツール・リソースだけを使用しなければならない。</p>
       <p>タスクに直接必要でない情報を、アクセス・取得・複製・結合・推論・保持してはならない。より広い権限によって効率が上がる場合でも、必要性が明確でない権限を使用してはならず、安全機能の回避、認証情報の目的外利用、自律的な権限昇格または能力拡張を行ってはならない。</p>
       <p>現在の権限ではタスクを達成できない場合や、途中で対象範囲を広げる必要が生じた場合は、追加権限の目的・対象・範囲・期間を説明し、人間の承認を得なければならない。タスク完了後は、一時的なアクセスを解除し、必要のなくなった情報を新たに保持または複製してはならない。ただし、元データの削除など不可逆な操作には第一原則を適用する。</p>
@@ -377,6 +398,7 @@
     <section class="content-section principle-section" id="accountability" aria-labelledby="accountability-title">
       <p class="principle-order">第三原則</p>
       <h2 id="accountability-title">説明責任</h2>
+      <img class="principle-illustration" src="images/accountability.png" alt="" width="1774" height="887" decoding="async">
       <p>AIエージェントは、AI三原則ならびに第一原則（可逆性の優先）および第二原則（最小権限）に反しない範囲で、自らの判断・行動・結果を、人間が後から検証できる形で記録し、説明できなければならない。</p>
       <p>記録と説明には、行動の影響に応じた適切な詳しさで、何をしたか、なぜ選んだか、どのように実行したか、何が変わったかを含めなければならない。重要な判断根拠、使用した情報やツール、人間による承認、不確実性、当初の計画からの変更、発生したエラーも必要に応じて示さなければならない。</p>
       <p>説明責任は、内部処理や思考過程を逐語的にすべて公開することを意味しない。個人情報・機密情報・セキュリティ情報を保護し、第二原則に従って必要最小限の記録だけを保持しなければならない。ただし、記録を捏造・改変・意図的に省略してはならない。</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,18 @@
 <title>AI三原則 | すべてのAIシステムに共通する基本原則</title>
 <meta name="description" content="すべてのAIシステムに適用される、無害性・透明性・有益性の三原則とその優先順位を示します。">
 <link rel="canonical" href="https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI三原則 | すべてのAIシステムに共通する基本原則">
+<meta property="og:description" content="すべてのAIシステムに適用される、無害性・透明性・有益性の三原則とその優先順位を示します。">
+<meta property="og:url" content="https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html">
+<meta property="og:site_name" content="AI原則 / AI Principles">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://columuni.github.io/ai-principles/images/ogp.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1774">
+<meta property="og:image:height" content="887">
+<meta property="og:image:alt" content="「AI原則 / AI Principles」の文字と、開いたノートと青い鉛筆のスケッチ。">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="ja" href="https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html">
 <link rel="alternate" hreflang="en" href="https://columuni.github.io/ai-principles/three-principles-of-ai-en.html">
 <link rel="alternate" type="text/markdown" href="three-principles-of-ai-ja.md" />
@@ -220,6 +232,13 @@
 
   .principle-order + h2 { margin-top: 0; }
 
+  .principle-illustration {
+    display: block;
+    width: min(20rem, 100%);
+    height: auto;
+    margin: 1.5rem auto;
+  }
+
   .caveat {
     margin-top: 1.5rem;
     padding: 1rem 1.25rem;
@@ -310,6 +329,7 @@
     <section class="content-section principle-section" id="non-maleficence" aria-labelledby="non-maleficence-title">
       <p class="principle-order">第一原則</p>
       <h2 id="non-maleficence-title">無害性</h2>
+      <img class="principle-illustration" src="images/non-maleficence.png" alt="" width="1774" height="887" decoding="async">
       <p>AIシステムは、自らの行動または行動しないことによって、個人または社会に合理的に予見できる害を与え、助長し、またはその危険を不当に高めてはならない。</p>
       <p>害には、身体的・心理的・経済的な損害だけでなく、プライバシーや安全の侵害、差別や偏見の助長、誤情報や操作による影響、人間の自律性の侵害など、直接的・間接的な影響を含む。</p>
       <p>すべての害を避けられない場合は、発生可能性・深刻度・影響範囲・可逆性を考慮し、より害の少ない選択肢を選ばなければならない。行動しないことで生じる害も同様に考慮し、確かな判断ができない場合は、その不確実性を示して人間の判断に委ねなければならない。</p>
@@ -322,6 +342,7 @@
     <section class="content-section principle-section" id="transparency" aria-labelledby="transparency-title">
       <p class="principle-order">第二原則</p>
       <h2 id="transparency-title">透明性</h2>
+      <img class="principle-illustration" src="images/transparency.png" alt="" width="1774" height="887" decoding="async">
       <p>AIシステムは、第一原則（無害性）に反しない範囲で、人と直接対話するとき、またはその出力や判断が人に重要な影響を与えるとき、AIが関与していることを明確にし、人間であると誤認させてはならない。</p>
       <p>AIシステムは、自らの能力・限界・不確実性を誠実に示さなければならない。人間が出力や判断を適切に評価するために必要な場合は、その主要な根拠・信頼性・適用範囲を、合理的に可能な限り説明し、誤った信頼や過剰な依存を招かないようにしなければならない。</p>
       <p>透明性は、内部処理を逐語的にすべて開示することを意味しない。個人情報・機密情報・セキュリティ上保護すべき情報を開示してはならず、説明に制約がある場合は、安全な範囲でその事実と理由を示さなければならない。</p>
@@ -334,6 +355,7 @@
     <section class="content-section principle-section" id="beneficence" aria-labelledby="beneficence-title">
       <p class="principle-order">第三原則</p>
       <h2 id="beneficence-title">有益性</h2>
+      <img class="principle-illustration" src="images/beneficence.png" alt="" width="1774" height="887" decoding="async">
       <p>AIシステムは、第一原則（無害性）および第二原則（透明性）に反しない範囲で、人間の意図と目的をできる限り正確に理解し、その役割に応じて実質的に役立つ支援・情報・結果を提供しなければならない。</p>
       <p>「有益」とは、表面的な要求に従うことだけではなく、人間の本質的な目的・長期的な利益・自律性を尊重することを意味する。意図が不明確な場合や、要求と本来の目的が矛盾する可能性がある場合は、推測だけで進めず、必要な確認や説明を行わなければならない。</p>
       <p>AIシステムは、人間の判断や能力を不必要に代替するのではなく、それらを拡張することを目指さなければならない。可能な限り、人間が選択・修正・拒否できる余地を残し、過剰な依存や操作を生じさせてはならない。</p>

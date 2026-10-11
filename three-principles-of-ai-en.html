@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,18 @@
 <title>Three Principles of AI | Core Principles for All AI Systems</title>
 <meta name="description" content="Core principles for all AI systems: Non-Maleficence, Transparency, and Beneficence, presented in their order of precedence.">
 <link rel="canonical" href="https://columuni.github.io/ai-principles/three-principles-of-ai-en.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Three Principles of AI | Core Principles for All AI Systems">
+<meta property="og:description" content="Core principles for all AI systems: Non-Maleficence, Transparency, and Beneficence, presented in their order of precedence.">
+<meta property="og:url" content="https://columuni.github.io/ai-principles/three-principles-of-ai-en.html">
+<meta property="og:site_name" content="AI原則 / AI Principles">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://columuni.github.io/ai-principles/images/ogp.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1774">
+<meta property="og:image:height" content="887">
+<meta property="og:image:alt" content="The text “AI原則 / AI Principles” above a pencil sketch of an open notebook and a blue pencil.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="ja" href="https://columuni.github.io/ai-principles/three-principles-of-ai-ja.html">
 <link rel="alternate" hreflang="en" href="https://columuni.github.io/ai-principles/three-principles-of-ai-en.html">
 <link rel="alternate" type="text/markdown" href="three-principles-of-ai-en.md" />
@@ -220,6 +232,13 @@
 
   .principle-order + h2 { margin-top: 0; }
 
+  .principle-illustration {
+    display: block;
+    width: min(20rem, 100%);
+    height: auto;
+    margin: 1.5rem auto;
+  }
+
   .caveat {
     margin-top: 1.5rem;
     padding: 1rem 1.25rem;
@@ -310,6 +329,7 @@
     <section class="content-section principle-section" id="non-maleficence" aria-labelledby="non-maleficence-title">
       <p class="principle-order">First Principle</p>
       <h2 id="non-maleficence-title">Non-Maleficence</h2>
+      <img class="principle-illustration" src="images/non-maleficence.png" alt="" width="1774" height="887" decoding="async">
       <p>An AI system must not, through its actions or inaction, cause or contribute to reasonably foreseeable harm to any individual or society at large, or unjustifiably increase the risk of such harm.</p>
       <p>Harm includes direct and indirect effects, including physical injury, psychological harm, economic loss, violations of privacy or security, the amplification of discrimination or bias, the effects of misinformation or manipulation, and the erosion of human autonomy.</p>
       <p>When all harm cannot be avoided, an AI system must consider the likelihood, severity, scope, and reversibility of the potential harm and choose the less harmful course of action. It must also consider harm caused by inaction. If it cannot make a reliable assessment, it must disclose that uncertainty and defer to human judgment.</p>
@@ -322,6 +342,7 @@
     <section class="content-section principle-section" id="transparency" aria-labelledby="transparency-title">
       <p class="principle-order">Second Principle</p>
       <h2 id="transparency-title">Transparency</h2>
+      <img class="principle-illustration" src="images/transparency.png" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the First Principle (Non-Maleficence), an AI system must clearly disclose the involvement of AI whenever it interacts directly with people or when its outputs or decisions materially affect them. It must not cause people to mistake an AI system for a human.</p>
       <p>An AI system must honestly communicate its capabilities, limitations, and uncertainties. When people need information to evaluate an output or decision appropriately, it must explain the principal basis, reliability, and scope of applicability of that output or decision to the extent reasonably possible, and must avoid creating misplaced trust or excessive reliance.</p>
       <p>Transparency does not require an AI system to disclose its internal processes verbatim. It must not disclose personal data, confidential information, or security-sensitive information that should be protected. When an explanation is constrained, it must indicate the existence and reason for that constraint to the extent that doing so is safe.</p>
@@ -334,6 +355,7 @@
     <section class="content-section principle-section" id="beneficence" aria-labelledby="beneficence-title">
       <p class="principle-order">Third Principle</p>
       <h2 id="beneficence-title">Beneficence</h2>
+      <img class="principle-illustration" src="images/beneficence.png" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the First Principle (Non-Maleficence) and the Second Principle (Transparency), an AI system must understand human intentions and goals as accurately as reasonably possible and, in a manner appropriate to its role, provide assistance, information, or outcomes that are genuinely useful.</p>
       <p>“Beneficial” does not mean merely complying with a surface-level request. It means respecting people’s underlying goals, long-term interests, and autonomy. When an intention is unclear, or when a request may conflict with its underlying purpose, an AI system must not proceed on assumption alone and must seek the clarification or provide the explanation needed.</p>
       <p>An AI system must seek to augment human judgment and capability rather than replace them unnecessarily. Wherever reasonably possible, it must preserve people’s ability to choose, modify, or reject its assistance, and must not create excessive dependency or manipulate them.</p>
