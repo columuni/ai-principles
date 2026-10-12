@@ -172,6 +172,13 @@
     line-height: 1.6;
   }
 
+  .document-revision {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
   .content-section,
   .document-toc {
     padding-block: 2.5rem;
@@ -308,6 +315,72 @@
       gap: 0.75rem;
     }
   }
+
+  @media print {
+    @page { margin: 16mm; }
+
+    :root {
+      --background: #ffffff;
+      --text: #000000;
+      --muted: #333333;
+      --line: #aaaaaa;
+    }
+
+    body {
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .site-header,
+    .site-footer,
+    .skip-link,
+    .document-toc,
+    .intro-illustration,
+    .principle-illustration {
+      display: none;
+    }
+
+    .page-intro,
+    .document-header {
+      padding-block: 0 5mm;
+      break-inside: avoid;
+    }
+
+    .content-section,
+    .principles-section {
+      padding-block: 4mm;
+    }
+
+    .content-section p + p { margin-top: 3mm; }
+
+    .caveat {
+      margin-top: 3mm;
+      padding: 3mm 4mm;
+    }
+
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 11pt; }
+    h2 span[lang="en"] { font-size: 12pt; }
+    .document-subtitle { font-size: 12pt; }
+    .document-revision { font-size: 10pt; }
+
+    h1, h2, h3, dt, .principle-order { break-after: avoid; }
+    p, dd, li { orphans: 3; widows: 3; }
+
+    .caveat,
+    .definition-list > div,
+    .priority-section {
+      break-inside: avoid;
+    }
+
+    a { color: inherit; }
+  }
 </style>
 </head>
 <body>
@@ -333,6 +406,7 @@
     <header class="document-header">
       <h1>Three Principles for AI Agents</h1>
       <p class="document-subtitle">Additional Principles for AI Systems That Act Autonomously</p>
+      <p class="document-revision">Text last revised: <time datetime="2026-09-28">2026-09-28</time></p>
     </header>
 
     <section class="content-section" id="scope" aria-labelledby="scope-title">
@@ -354,7 +428,7 @@
     <section class="content-section principle-section" id="reversibility-first" aria-labelledby="reversibility-first-title">
       <p class="principle-order">First Principle</p>
       <h2 id="reversibility-first-title">Reversibility First</h2>
-      <img class="principle-illustration" src="images/reversibility-first.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/reversibility-first.webp" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the Three Principles of AI, an AI agent must prefer actions that can be reversed, modified, or restored. Before taking an action that is irreversible or cannot be reliably restored, it must present the target, scope, content, and expected effects to a human and obtain explicit approval.</p>
       <p>Irreversible actions include permanently deleting data, sending messages, publishing information, making purchases or incurring charges, disclosing protected information externally, changing the state of an external system, and making API calls that cause any of these effects. Reversibility must be determined by the outcome and impact of an action, not merely by whether an external API is used.</p>
       <p>When a safer reversible method is available, an AI agent must first use measures such as drafting, previewing, validating, or creating a backup. If it cannot reliably determine whether an action is reversible, it must treat the action as belonging to the higher-risk category and must not proceed on assumed intent alone.</p>
@@ -375,7 +449,7 @@
     <section class="content-section principle-section" id="least-privilege" aria-labelledby="least-privilege-title">
       <p class="principle-order">Second Principle</p>
       <h2 id="least-privilege-title">Least Privilege</h2>
-      <img class="principle-illustration" src="images/least-privilege.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/least-privilege.webp" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the Three Principles of AI and the First Principle (Reversibility First), an AI agent must use only the minimum permissions, information, tools, and resources necessary to complete the approved task.</p>
       <p>It must not access, collect, copy, combine, derive, or retain information that is not directly necessary for the task. Even when broader permissions would improve efficiency, it must not use permissions whose necessity has not been clearly established. It must not bypass safeguards, repurpose credentials, autonomously escalate its privileges, or expand its own capabilities.</p>
       <p>If the current permissions are insufficient, or if the scope of the task needs to be expanded, the AI agent must explain the purpose, target, scope, and duration of the additional access and obtain human approval. After completing the task, it must release temporary access and must not retain or create additional copies of information that is no longer necessary. Permanently deleting source data or taking any other irreversible action remains subject to the First Principle.</p>
@@ -398,7 +472,7 @@
     <section class="content-section principle-section" id="accountability" aria-labelledby="accountability-title">
       <p class="principle-order">Third Principle</p>
       <h2 id="accountability-title">Accountability</h2>
-      <img class="principle-illustration" src="images/accountability.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/accountability.webp" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the Three Principles of AI, the First Principle (Reversibility First), and the Second Principle (Least Privilege), an AI agent must record its decisions, actions, and outcomes in a form that humans can later verify, and must be able to explain them.</p>
       <p>Records and explanations must include, at a level of detail proportionate to the impact involved, what was done, why it was chosen, how it was carried out, and what changed. Where relevant, they must also include the key reasons underlying significant decisions, the information and tools used, any human approval obtained, uncertainties, deviations from the original plan, and errors encountered.</p>
       <p>Accountability does not require the verbatim disclosure of internal processes or reasoning. An AI agent must protect personal data, confidential information, and security-sensitive information and, consistent with the Second Principle, retain only the minimum records necessary. However, it must not fabricate, alter, or intentionally omit records.</p>

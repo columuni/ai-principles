@@ -218,6 +218,72 @@
     .page-intro { padding-block: 2rem; }
     .principles-section { padding-block: 2rem; }
   }
+
+  @media print {
+    @page { margin: 16mm; }
+
+    :root {
+      --background: #ffffff;
+      --text: #000000;
+      --muted: #333333;
+      --line: #aaaaaa;
+    }
+
+    body {
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .site-header,
+    .site-footer,
+    .skip-link,
+    .document-toc,
+    .intro-illustration,
+    .principle-illustration {
+      display: none;
+    }
+
+    .page-intro,
+    .document-header {
+      padding-block: 0 5mm;
+      break-inside: avoid;
+    }
+
+    .content-section,
+    .principles-section {
+      padding-block: 4mm;
+    }
+
+    .content-section p + p { margin-top: 3mm; }
+
+    .caveat {
+      margin-top: 3mm;
+      padding: 3mm 4mm;
+    }
+
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 11pt; }
+    h2 span[lang="en"] { font-size: 12pt; }
+    .document-subtitle { font-size: 12pt; }
+    .document-revision { font-size: 10pt; }
+
+    h1, h2, h3, dt, .principle-order { break-after: avoid; }
+    p, dd, li { orphans: 3; widows: 3; }
+
+    .caveat,
+    .definition-list > div,
+    .priority-section {
+      break-inside: avoid;
+    }
+
+    a { color: inherit; }
+  }
 </style>
 </head>
 <body>
@@ -225,7 +291,7 @@
   <h1>AI原則<span class="title-en" lang="en"> / AI Principles</span></h1>
   <p>すべてのAIシステムに共通する基本原則と、自律的に行動するAIエージェントへの追加原則を示します。<br>AIエージェントには、両方の原則が適用されます。</p>
   <p class="translation" lang="en">This site presents core principles for all AI systems and additional principles for AI agents that act autonomously. Both sets of principles apply to AI agents.</p>
-  <img class="intro-illustration" src="images/notebook-pencil.png" alt="" width="1774" height="887" decoding="async">
+  <img class="intro-illustration" src="images/notebook-pencil.webp" alt="" width="1774" height="887" decoding="async">
 </header>
 
 <main id="main-content" class="container">

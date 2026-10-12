@@ -16,6 +16,8 @@ Regenerate: python scripts/generate_markdown.py -->
 
 すべてのAIシステムに共通する基本原則
 
+本文改訂日：2026-09-28
+
 <a id="scope"></a>
 
 <a id="scope-title"></a>

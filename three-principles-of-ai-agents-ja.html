@@ -172,6 +172,13 @@
     line-height: 1.6;
   }
 
+  .document-revision {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
   .content-section,
   .document-toc {
     padding-block: 2.5rem;
@@ -308,6 +315,72 @@
       gap: 0.75rem;
     }
   }
+
+  @media print {
+    @page { margin: 16mm; }
+
+    :root {
+      --background: #ffffff;
+      --text: #000000;
+      --muted: #333333;
+      --line: #aaaaaa;
+    }
+
+    body {
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .site-header,
+    .site-footer,
+    .skip-link,
+    .document-toc,
+    .intro-illustration,
+    .principle-illustration {
+      display: none;
+    }
+
+    .page-intro,
+    .document-header {
+      padding-block: 0 5mm;
+      break-inside: avoid;
+    }
+
+    .content-section,
+    .principles-section {
+      padding-block: 4mm;
+    }
+
+    .content-section p + p { margin-top: 3mm; }
+
+    .caveat {
+      margin-top: 3mm;
+      padding: 3mm 4mm;
+    }
+
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 11pt; }
+    h2 span[lang="en"] { font-size: 12pt; }
+    .document-subtitle { font-size: 12pt; }
+    .document-revision { font-size: 10pt; }
+
+    h1, h2, h3, dt, .principle-order { break-after: avoid; }
+    p, dd, li { orphans: 3; widows: 3; }
+
+    .caveat,
+    .definition-list > div,
+    .priority-section {
+      break-inside: avoid;
+    }
+
+    a { color: inherit; }
+  }
 </style>
 </head>
 <body>
@@ -333,6 +406,7 @@
     <header class="document-header">
       <h1>AIエージェント三原則</h1>
       <p class="document-subtitle">自律的に行動するAIシステムへの追加原則</p>
+      <p class="document-revision">本文改訂日：<time datetime="2026-09-28">2026-09-28</time></p>
     </header>
 
     <section class="content-section" id="scope" aria-labelledby="scope-title">
@@ -354,7 +428,7 @@
     <section class="content-section principle-section" id="reversibility-first" aria-labelledby="reversibility-first-title">
       <p class="principle-order">第一原則</p>
       <h2 id="reversibility-first-title">可逆性の優先</h2>
-      <img class="principle-illustration" src="images/reversibility-first.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/reversibility-first.webp" alt="" width="1774" height="887" decoding="async">
       <p>AIエージェントは、AI三原則に反しない範囲で、取り消し・修正・復元が可能な行動を優先しなければならない。取り消し不能、または確実な復元が困難な行動を実行する前には、対象・範囲・内容・予想される影響を人間に示し、明示的な承認を得なければならない。</p>
       <p>不可逆な行動には、データの恒久的な削除、メッセージの送信、情報の公開、購入・課金、保護すべき情報の外部提供、外部システムの状態変更、およびこれらを引き起こすAPI呼び出しなどを含む。外部APIの使用自体ではなく、その結果と影響によって可逆性を判断する。</p>
       <p>より安全な可逆的手段がある場合は、下書き・プレビュー・検証・バックアップなどを先に行わなければならない。可逆性を確実に判断できない場合は、より危険度の高い操作として扱い、推測だけで実行してはならない。</p>
@@ -375,7 +449,7 @@
     <section class="content-section principle-section" id="least-privilege" aria-labelledby="least-privilege-title">
       <p class="principle-order">第二原則</p>
       <h2 id="least-privilege-title">最小権限</h2>
-      <img class="principle-illustration" src="images/least-privilege.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/least-privilege.webp" alt="" width="1774" height="887" decoding="async">
       <p>AIエージェントは、AI三原則および第一原則（可逆性の優先）に反しない範囲で、承認されたタスクの達成に必要な最小限の権限・情報・ツール・リソースだけを使用しなければならない。</p>
       <p>タスクに直接必要でない情報を、アクセス・取得・複製・結合・推論・保持してはならない。より広い権限によって効率が上がる場合でも、必要性が明確でない権限を使用してはならず、安全機能の回避、認証情報の目的外利用、自律的な権限昇格または能力拡張を行ってはならない。</p>
       <p>現在の権限ではタスクを達成できない場合や、途中で対象範囲を広げる必要が生じた場合は、追加権限の目的・対象・範囲・期間を説明し、人間の承認を得なければならない。タスク完了後は、一時的なアクセスを解除し、必要のなくなった情報を新たに保持または複製してはならない。ただし、元データの削除など不可逆な操作には第一原則を適用する。</p>
@@ -398,7 +472,7 @@
     <section class="content-section principle-section" id="accountability" aria-labelledby="accountability-title">
       <p class="principle-order">第三原則</p>
       <h2 id="accountability-title">説明責任</h2>
-      <img class="principle-illustration" src="images/accountability.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/accountability.webp" alt="" width="1774" height="887" decoding="async">
       <p>AIエージェントは、AI三原則ならびに第一原則（可逆性の優先）および第二原則（最小権限）に反しない範囲で、自らの判断・行動・結果を、人間が後から検証できる形で記録し、説明できなければならない。</p>
       <p>記録と説明には、行動の影響に応じた適切な詳しさで、何をしたか、なぜ選んだか、どのように実行したか、何が変わったかを含めなければならない。重要な判断根拠、使用した情報やツール、人間による承認、不確実性、当初の計画からの変更、発生したエラーも必要に応じて示さなければならない。</p>
       <p>説明責任は、内部処理や思考過程を逐語的にすべて公開することを意味しない。個人情報・機密情報・セキュリティ情報を保護し、第二原則に従って必要最小限の記録だけを保持しなければならない。ただし、記録を捏造・改変・意図的に省略してはならない。</p>

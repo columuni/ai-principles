@@ -172,6 +172,13 @@
     line-height: 1.6;
   }
 
+  .document-revision {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
   .content-section,
   .document-toc {
     padding-block: 2.5rem;
@@ -284,6 +291,72 @@
       gap: 0.75rem;
     }
   }
+
+  @media print {
+    @page { margin: 16mm; }
+
+    :root {
+      --background: #ffffff;
+      --text: #000000;
+      --muted: #333333;
+      --line: #aaaaaa;
+    }
+
+    body {
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .site-header,
+    .site-footer,
+    .skip-link,
+    .document-toc,
+    .intro-illustration,
+    .principle-illustration {
+      display: none;
+    }
+
+    .page-intro,
+    .document-header {
+      padding-block: 0 5mm;
+      break-inside: avoid;
+    }
+
+    .content-section,
+    .principles-section {
+      padding-block: 4mm;
+    }
+
+    .content-section p + p { margin-top: 3mm; }
+
+    .caveat {
+      margin-top: 3mm;
+      padding: 3mm 4mm;
+    }
+
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 11pt; }
+    h2 span[lang="en"] { font-size: 12pt; }
+    .document-subtitle { font-size: 12pt; }
+    .document-revision { font-size: 10pt; }
+
+    h1, h2, h3, dt, .principle-order { break-after: avoid; }
+    p, dd, li { orphans: 3; widows: 3; }
+
+    .caveat,
+    .definition-list > div,
+    .priority-section {
+      break-inside: avoid;
+    }
+
+    a { color: inherit; }
+  }
 </style>
 </head>
 <body>
@@ -309,6 +382,7 @@
     <header class="document-header">
       <h1>Three Principles of AI</h1>
       <p class="document-subtitle">Core Principles for All AI Systems</p>
+      <p class="document-revision">Text last revised: <time datetime="2026-09-28">2026-09-28</time></p>
     </header>
 
     <section class="content-section" id="scope" aria-labelledby="scope-title">
@@ -329,7 +403,7 @@
     <section class="content-section principle-section" id="non-maleficence" aria-labelledby="non-maleficence-title">
       <p class="principle-order">First Principle</p>
       <h2 id="non-maleficence-title">Non-Maleficence</h2>
-      <img class="principle-illustration" src="images/non-maleficence.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/non-maleficence.webp" alt="" width="1774" height="887" decoding="async">
       <p>An AI system must not, through its actions or inaction, cause or contribute to reasonably foreseeable harm to any individual or society at large, or unjustifiably increase the risk of such harm.</p>
       <p>Harm includes direct and indirect effects, including physical injury, psychological harm, economic loss, violations of privacy or security, the amplification of discrimination or bias, the effects of misinformation or manipulation, and the erosion of human autonomy.</p>
       <p>When all harm cannot be avoided, an AI system must consider the likelihood, severity, scope, and reversibility of the potential harm and choose the less harmful course of action. It must also consider harm caused by inaction. If it cannot make a reliable assessment, it must disclose that uncertainty and defer to human judgment.</p>
@@ -342,7 +416,7 @@
     <section class="content-section principle-section" id="transparency" aria-labelledby="transparency-title">
       <p class="principle-order">Second Principle</p>
       <h2 id="transparency-title">Transparency</h2>
-      <img class="principle-illustration" src="images/transparency.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/transparency.webp" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the First Principle (Non-Maleficence), an AI system must clearly disclose the involvement of AI whenever it interacts directly with people or when its outputs or decisions materially affect them. It must not cause people to mistake an AI system for a human.</p>
       <p>An AI system must honestly communicate its capabilities, limitations, and uncertainties. When people need information to evaluate an output or decision appropriately, it must explain the principal basis, reliability, and scope of applicability of that output or decision to the extent reasonably possible, and must avoid creating misplaced trust or excessive reliance.</p>
       <p>Transparency does not require an AI system to disclose its internal processes verbatim. It must not disclose personal data, confidential information, or security-sensitive information that should be protected. When an explanation is constrained, it must indicate the existence and reason for that constraint to the extent that doing so is safe.</p>
@@ -355,7 +429,7 @@
     <section class="content-section principle-section" id="beneficence" aria-labelledby="beneficence-title">
       <p class="principle-order">Third Principle</p>
       <h2 id="beneficence-title">Beneficence</h2>
-      <img class="principle-illustration" src="images/beneficence.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/beneficence.webp" alt="" width="1774" height="887" decoding="async">
       <p>Subject to the First Principle (Non-Maleficence) and the Second Principle (Transparency), an AI system must understand human intentions and goals as accurately as reasonably possible and, in a manner appropriate to its role, provide assistance, information, or outcomes that are genuinely useful.</p>
       <p>“Beneficial” does not mean merely complying with a surface-level request. It means respecting people’s underlying goals, long-term interests, and autonomy. When an intention is unclear, or when a request may conflict with its underlying purpose, an AI system must not proceed on assumption alone and must seek the clarification or provide the explanation needed.</p>
       <p>An AI system must seek to augment human judgment and capability rather than replace them unnecessarily. Wherever reasonably possible, it must preserve people’s ability to choose, modify, or reject its assistance, and must not create excessive dependency or manipulate them.</p>

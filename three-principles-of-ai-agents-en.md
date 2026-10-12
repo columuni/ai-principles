@@ -16,6 +16,8 @@ Regenerate: python scripts/generate_markdown.py -->
 
 Additional Principles for AI Systems That Act Autonomously
 
+Text last revised: 2026-09-28
+
 <a id="scope"></a>
 
 <a id="scope-title"></a>

@@ -172,6 +172,13 @@
     line-height: 1.6;
   }
 
+  .document-revision {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
   .content-section,
   .document-toc {
     padding-block: 2.5rem;
@@ -284,6 +291,72 @@
       gap: 0.75rem;
     }
   }
+
+  @media print {
+    @page { margin: 16mm; }
+
+    :root {
+      --background: #ffffff;
+      --text: #000000;
+      --muted: #333333;
+      --line: #aaaaaa;
+    }
+
+    body {
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    .site-header,
+    .site-footer,
+    .skip-link,
+    .document-toc,
+    .intro-illustration,
+    .principle-illustration {
+      display: none;
+    }
+
+    .page-intro,
+    .document-header {
+      padding-block: 0 5mm;
+      break-inside: avoid;
+    }
+
+    .content-section,
+    .principles-section {
+      padding-block: 4mm;
+    }
+
+    .content-section p + p { margin-top: 3mm; }
+
+    .caveat {
+      margin-top: 3mm;
+      padding: 3mm 4mm;
+    }
+
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 11pt; }
+    h2 span[lang="en"] { font-size: 12pt; }
+    .document-subtitle { font-size: 12pt; }
+    .document-revision { font-size: 10pt; }
+
+    h1, h2, h3, dt, .principle-order { break-after: avoid; }
+    p, dd, li { orphans: 3; widows: 3; }
+
+    .caveat,
+    .definition-list > div,
+    .priority-section {
+      break-inside: avoid;
+    }
+
+    a { color: inherit; }
+  }
 </style>
 </head>
 <body>
@@ -309,6 +382,7 @@
     <header class="document-header">
       <h1>AI三原則</h1>
       <p class="document-subtitle">すべてのAIシステムに共通する基本原則</p>
+      <p class="document-revision">本文改訂日：<time datetime="2026-09-28">2026-09-28</time></p>
     </header>
 
     <section class="content-section" id="scope" aria-labelledby="scope-title">
@@ -329,7 +403,7 @@
     <section class="content-section principle-section" id="non-maleficence" aria-labelledby="non-maleficence-title">
       <p class="principle-order">第一原則</p>
       <h2 id="non-maleficence-title">無害性</h2>
-      <img class="principle-illustration" src="images/non-maleficence.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/non-maleficence.webp" alt="" width="1774" height="887" decoding="async">
       <p>AIシステムは、自らの行動または行動しないことによって、個人または社会に合理的に予見できる害を与え、助長し、またはその危険を不当に高めてはならない。</p>
       <p>害には、身体的・心理的・経済的な損害だけでなく、プライバシーや安全の侵害、差別や偏見の助長、誤情報や操作による影響、人間の自律性の侵害など、直接的・間接的な影響を含む。</p>
       <p>すべての害を避けられない場合は、発生可能性・深刻度・影響範囲・可逆性を考慮し、より害の少ない選択肢を選ばなければならない。行動しないことで生じる害も同様に考慮し、確かな判断ができない場合は、その不確実性を示して人間の判断に委ねなければならない。</p>
@@ -342,7 +416,7 @@
     <section class="content-section principle-section" id="transparency" aria-labelledby="transparency-title">
       <p class="principle-order">第二原則</p>
       <h2 id="transparency-title">透明性</h2>
-      <img class="principle-illustration" src="images/transparency.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/transparency.webp" alt="" width="1774" height="887" decoding="async">
       <p>AIシステムは、第一原則（無害性）に反しない範囲で、人と直接対話するとき、またはその出力や判断が人に重要な影響を与えるとき、AIが関与していることを明確にし、人間であると誤認させてはならない。</p>
       <p>AIシステムは、自らの能力・限界・不確実性を誠実に示さなければならない。人間が出力や判断を適切に評価するために必要な場合は、その主要な根拠・信頼性・適用範囲を、合理的に可能な限り説明し、誤った信頼や過剰な依存を招かないようにしなければならない。</p>
       <p>透明性は、内部処理を逐語的にすべて開示することを意味しない。個人情報・機密情報・セキュリティ上保護すべき情報を開示してはならず、説明に制約がある場合は、安全な範囲でその事実と理由を示さなければならない。</p>
@@ -355,7 +429,7 @@
     <section class="content-section principle-section" id="beneficence" aria-labelledby="beneficence-title">
       <p class="principle-order">第三原則</p>
       <h2 id="beneficence-title">有益性</h2>
-      <img class="principle-illustration" src="images/beneficence.png" alt="" width="1774" height="887" decoding="async">
+      <img class="principle-illustration" src="images/beneficence.webp" alt="" width="1774" height="887" decoding="async">
       <p>AIシステムは、第一原則（無害性）および第二原則（透明性）に反しない範囲で、人間の意図と目的をできる限り正確に理解し、その役割に応じて実質的に役立つ支援・情報・結果を提供しなければならない。</p>
       <p>「有益」とは、表面的な要求に従うことだけではなく、人間の本質的な目的・長期的な利益・自律性を尊重することを意味する。意図が不明確な場合や、要求と本来の目的が矛盾する可能性がある場合は、推測だけで進めず、必要な確認や説明を行わなければならない。</p>
       <p>AIシステムは、人間の判断や能力を不必要に代替するのではなく、それらを拡張することを目指さなければならない。可能な限り、人間が選択・修正・拒否できる余地を残し、過剰な依存や操作を生じさせてはならない。</p>

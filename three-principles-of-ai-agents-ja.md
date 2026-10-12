@@ -16,6 +16,8 @@ Regenerate: python scripts/generate_markdown.py -->
 
 自律的に行動するAIシステムへの追加原則
 
+本文改訂日：2026-09-28
+
 <a id="scope"></a>
 
 <a id="scope-title"></a>

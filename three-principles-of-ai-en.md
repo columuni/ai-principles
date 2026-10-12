@@ -16,6 +16,8 @@ Regenerate: python scripts/generate_markdown.py -->
 
 Core Principles for All AI Systems
 
+Text last revised: 2026-09-28
+
 <a id="scope"></a>
 
 <a id="scope-title"></a>
