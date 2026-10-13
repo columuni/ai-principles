@@ -16,7 +16,7 @@ This site presents core principles for all AI systems and additional principles 
 
 <a id="ai-principles-title"></a>
 
-## AI三原則 Three Principles of AI
+## <a id="ai-principles-title-ja"></a> AI三原則 <a id="ai-principles-title-en"></a> Three Principles of AI
 
 すべてのAIシステムに共通する基本原則 Core Principles for All AI Systems
 
@@ -24,13 +24,13 @@ This site presents core principles for all AI systems and additional principles 
 2. 透明性 / Transparency
 3. 有益性 / Beneficence
 
-[日本語](three-principles-of-ai-ja.html) / [English](three-principles-of-ai-en.html)
+<a id="ai-principles-link-ja"></a> [日本語](three-principles-of-ai-ja.html) / <a id="ai-principles-link-en"></a> [English](three-principles-of-ai-en.html)
 
 <a id="ai-agent-principles"></a>
 
 <a id="ai-agent-principles-title"></a>
 
-## AIエージェント三原則 Three Principles for AI Agents
+## <a id="ai-agent-principles-title-ja"></a> AIエージェント三原則 <a id="ai-agent-principles-title-en"></a> Three Principles for AI Agents
 
 自律的に行動するAIシステムへの追加原則 Additional Principles for AI Systems That Act Autonomously
 
@@ -40,7 +40,7 @@ This site presents core principles for all AI systems and additional principles 
 
 AIエージェントには、AI三原則とAIエージェント三原則の両方が適用されます。 Both the Three Principles of AI and the Three Principles for AI Agents apply to AI agents.
 
-[日本語](three-principles-of-ai-agents-ja.html) / [English](three-principles-of-ai-agents-en.html)
+<a id="ai-agent-principles-link-ja"></a> [日本語](three-principles-of-ai-agents-ja.html) / <a id="ai-agent-principles-link-en"></a> [English](three-principles-of-ai-agents-en.html)
 
 AI原則 / AI Principles
 
